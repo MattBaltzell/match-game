@@ -49,8 +49,8 @@ button {
 
 .grid {
   display: grid;
-  grid-template-areas: "1 2 3" "4 5 6" "7 8 9" "10 11 12";
-  gap: 15px; }
+  grid-template-areas: "1 2 3 4" "5 6 7 8" "9 10 11 12" "13 14 15 16";
+  gap: 10px; }
   .grid span {
     font-size: 20px;
     grid-column: span 3; }
@@ -60,8 +60,8 @@ button {
       gap: 20px; } }
 
 .card {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   perspective: 500px;
   border-radius: 12px;
   cursor: pointer; }
@@ -96,10 +96,10 @@ button {
     font-weight: 100;
     line-height: 16px; }
   .card-side__back {
-    padding-top: 14px;
+    padding-top: 10px;
     background-color: #f0e9ff;
     transform: rotateY(180deg);
-    font-size: 60px;
+    font-size: 50px;
     color: #5f27cd; }
     @media screen and (min-width: 400px) {
       .card-side__back {

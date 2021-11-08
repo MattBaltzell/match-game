@@ -27,12 +27,16 @@ const card3 = new Card("3", 3);
 const card4 = new Card("4", 4);
 const card5 = new Card("5", 5);
 const card6 = new Card("6", 6);
-const card7 = new Card("7", 1);
-const card8 = new Card("8", 2);
-const card9 = new Card("9", 3);
-const card10 = new Card("10", 4);
-const card11 = new Card("11", 5);
-const card12 = new Card("12", 6);
+const card7 = new Card("7", 7);
+const card8 = new Card("8", 8);
+const card9 = new Card("9", 1);
+const card10 = new Card("10", 2);
+const card11 = new Card("11", 3);
+const card12 = new Card("12", 4);
+const card13 = new Card("13", 5);
+const card14 = new Card("14", 6);
+const card15 = new Card("15", 7);
+const card16 = new Card("16", 8);
 
 const cardDeck = [
   card1,
@@ -47,6 +51,10 @@ const cardDeck = [
   card10,
   card11,
   card12,
+  card13,
+  card14,
+  card15,
+  card16,
 ];
 
 let domCards;
