@@ -86,14 +86,13 @@ button {
     backface-visibility: hidden;
     border-radius: 12px; }
   .card-side__front {
-    padding-top: 16px;
     background-color: #ff6b6b;
     color: #ffcece;
     font-size: 22px;
     font-weight: 100;
     line-height: 16px; }
   .card-side__back {
-    padding-top: 24px;
+    padding-top: 18px;
     background-color: #eee;
     transform: rotateY(180deg);
     font-size: 60px;
