@@ -124,11 +124,15 @@ button {
     }
 
     &__back {
-      padding-top: 18px;
+      padding-top: 14px;
       background-color: #eee;
       transform: rotateY(180deg);
       font-size: 60px;
       color: #5f27cd;
+
+      @media screen and (min-width: 400px) {
+        padding-top: 26px;
+      }
     }
   }
 }
