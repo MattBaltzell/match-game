@@ -104,3 +104,6 @@ button {
     @media screen and (min-width: 400px) {
       .card-side__back {
         padding-top: 26px; } }
+
+.personal-best {
+  margin-top: 40px; }

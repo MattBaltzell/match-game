@@ -3,6 +3,7 @@
 const gridDOM = document.querySelector("#grid");
 const heading1 = document.querySelector(".heading-1");
 const btnPlayAgain = document.getElementById("btn");
+const personalBest = document.querySelector(".personal-best");
 
 setTimeout(() => {
   grid.innerHTML = "";
@@ -62,6 +63,7 @@ let domCards;
 // GAMEPLAY VARIABLES
 let selections = 0;
 let score = 0;
+let highScore = localStorage.getItem("highScore") || 0;
 
 // GAME LOGIC
 const checkMatch = () => {
@@ -71,6 +73,7 @@ const checkMatch = () => {
   if (selectedCards[0].dataset.value !== selectedCards[1].dataset.value) {
     console.log("No MATCH!!!!");
     setTimeout(() => {
+      score += 1;
       unflipUnmatched();
     }, 600);
   } else if (
@@ -152,10 +155,16 @@ const checkWin = () => {
   if (flipped.length === domCards.length) {
     btnPlayAgain.classList.remove("hidden");
     heading1.textContent = "YOU WIN!";
+    highScore = score;
+    localStorage.setItem("highScore", highScore);
+    personalBest.textContent = `Personal Best: ${highScore} Mistakes`;
   }
 };
 
 const init = () => {
+  highScore
+    ? personalBest.classList.remove("hidden")
+    : personalBest.classList.add("hidden");
   unflipAll();
   setTimeout(() => {
     heading1.textContent = "Match the Cards!";
