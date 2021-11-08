@@ -76,8 +76,7 @@ button {
     transition: transform 1s;
     transform-style: preserve-3d; }
   .card.flip .card-inner {
-    transform: rotateY(180deg);
-    transition: transform 0.5s; }
+    transform: rotateY(180deg); }
   .card-side__front, .card-side__back {
     width: 100%;
     height: 100%;
