@@ -155,8 +155,11 @@ const checkWin = () => {
   if (flipped.length === domCards.length) {
     btnPlayAgain.classList.remove("hidden");
     heading1.textContent = "YOU WIN!";
-    highScore = score;
+    if (!highScore || score < highScore) {
+      highScore = score;
+    }
     localStorage.setItem("highScore", highScore);
+    score = 0;
   }
 };
 
