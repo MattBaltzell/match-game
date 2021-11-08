@@ -61,10 +61,13 @@ button {
 
 .card {
   width: 100px;
-  height: 120px;
+  height: 100px;
   perspective: 500px;
   border-radius: 12px;
   cursor: pointer; }
+  @media screen and (min-width: 400px) {
+    .card {
+      height: 120px; } }
   .card-inner {
     position: relative;
     width: 100%;
@@ -79,7 +82,6 @@ button {
     width: 100%;
     height: 100%;
     position: absolute;
-    padding: 16px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 12px; }
@@ -91,7 +93,7 @@ button {
     font-weight: 100;
     line-height: 16px; }
   .card-side__back {
-    padding: 24px 30px 36px 30px;
+    padding-top: 24px;
     background-color: #eee;
     transform: rotateY(180deg);
     font-size: 60px;

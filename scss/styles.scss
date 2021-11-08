@@ -80,10 +80,14 @@ button {
 
 .card {
   width: 100px;
-  height: 120px;
+  height: 100px;
   perspective: 500px;
   border-radius: 12px;
   cursor: pointer;
+
+  @media screen and (min-width: 400px) {
+    height: 120px;
+  }
 
   &-inner {
     position: relative;
@@ -106,7 +110,7 @@ button {
       width: 100%;
       height: 100%;
       position: absolute;
-      padding: 16px;
+      // padding: 16px;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       border-radius: 12px;
@@ -126,7 +130,7 @@ button {
     }
 
     &__back {
-      padding: 24px 30px 36px 30px;
+      padding-top: 24px;
       background-color: #eee;
       transform: rotateY(180deg);
       font-size: 60px;
