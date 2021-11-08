@@ -24,6 +24,9 @@ body {
     margin-top: 10px;
     height: 6px;
     background-color: #5f27cd; }
+  @media screen and (max-width: 374px) {
+    .heading-1 {
+      font-size: 28px; } }
 
 button {
   cursor: pointer;
@@ -67,6 +70,10 @@ button {
   perspective: 500px;
   border-radius: 12px;
   cursor: pointer; }
+  @media screen and (max-width: 374px) {
+    .card {
+      width: 60px;
+      height: 60px; } }
   @media screen and (min-width: 760px) {
     .card {
       width: 160px;
@@ -104,6 +111,10 @@ button {
     transform: rotateY(180deg);
     font-size: 50px;
     color: #5f27cd; }
+    @media screen and (max-width: 374px) {
+      .card-side__back {
+        padding-top: 8px;
+        font-size: 40px; } }
     @media screen and (min-width: 760px) {
       .card-side__back {
         padding-top: 32px;

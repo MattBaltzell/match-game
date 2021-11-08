@@ -28,6 +28,10 @@ body {
     height: 6px;
     background-color: #5f27cd;
   }
+
+  @media screen and (max-width: 374px) {
+    font-size: 28px;
+  }
 }
 
 button {
@@ -85,6 +89,11 @@ button {
   border-radius: 12px;
   cursor: pointer;
 
+  @media screen and (max-width: 374px) {
+    width: 60px;
+    height: 60px;
+  }
+
   @media screen and (min-width: 760px) {
     width: 160px;
     height: 160px;
@@ -134,6 +143,11 @@ button {
       transform: rotateY(180deg);
       font-size: 50px;
       color: #5f27cd;
+
+      @media screen and (max-width: 374px) {
+        padding-top: 8px;
+        font-size: 40px;
+      }
 
       @media screen and (min-width: 760px) {
         padding-top: 32px;
