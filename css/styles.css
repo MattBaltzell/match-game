@@ -59,7 +59,7 @@ button {
   gap: 10px; }
   .grid span {
     font-size: 20px;
-    grid-column: span 3; }
+    grid-column: span 4; }
   @media screen and (min-width: 760px) {
     .grid {
       gap: 20px; } }
@@ -121,4 +121,5 @@ button {
         font-size: 80px; } }
 
 .personal-best {
-  margin-top: 40px; }
+  margin-top: 40px;
+  grid-column: span 4; }
