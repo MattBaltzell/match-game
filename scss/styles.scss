@@ -79,8 +79,8 @@ button {
 }
 
 .card {
-  min-width: 100px;
-  min-height: 120px;
+  width: 100px;
+  height: 120px;
   perspective: 500px;
   border-radius: 12px;
   cursor: pointer;
@@ -103,9 +103,9 @@ button {
   &-side {
     &__front,
     &__back {
-      position: absolute;
       width: 100%;
       height: 100%;
+      position: absolute;
       padding: 16px;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
