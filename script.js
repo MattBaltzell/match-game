@@ -157,7 +157,6 @@ const checkWin = () => {
     heading1.textContent = "YOU WIN!";
     highScore = score;
     localStorage.setItem("highScore", highScore);
-    personalBest.textContent = `Personal Best: ${highScore} Mistakes`;
   }
 };
 
@@ -165,6 +164,7 @@ const init = () => {
   highScore
     ? personalBest.classList.remove("hidden")
     : personalBest.classList.add("hidden");
+  personalBest.textContent = `Personal Best: ${highScore} Mistakes`;
   unflipAll();
   setTimeout(() => {
     heading1.textContent = "Match the Cards!";
