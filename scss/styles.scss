@@ -41,7 +41,7 @@ button {
   font-size: 24px;
   background-color: #1dd1a1;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 760px) {
     width: 340px;
   }
 }
@@ -73,7 +73,7 @@ button {
     grid-column: span 3;
   }
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 760px) {
     gap: 20px;
   }
 }
@@ -85,7 +85,7 @@ button {
   border-radius: 12px;
   cursor: pointer;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 760px) {
     width: 160px;
     height: 160px;
   }
@@ -135,7 +135,7 @@ button {
       font-size: 50px;
       color: #5f27cd;
 
-      @media screen and (min-width: 600px) {
+      @media screen and (min-width: 760px) {
         padding-top: 32px;
         font-size: 80px;
       }
