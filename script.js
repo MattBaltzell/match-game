@@ -111,8 +111,10 @@ const cardFlipHandler = (e) => {
     null;
   } else {
     e.target.parentElement.parentElement.classList.add("flip");
-    selections += 1;
-    selections === 2 ? checkMatch() : null;
+    setTimeout(() => {
+      selections += 1;
+      selections === 2 ? checkMatch() : null;
+    }, 0);
   }
 };
 
