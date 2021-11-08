@@ -14,7 +14,7 @@ class Card {
     this.value = value;
     this.html = `<div class="card" id="card-${this.id}" data-value="${this.value}" data-matched="0">
     <div class="card-inner">
-      <div class="card-side card-side__front"><p>* * * * *<br>* * * * *<br>* * * * *<br>* * * * *<br>* * * * *<br>* * * * *</p></div>
+      <div class="card-side card-side__front"></div>
       <div class="card-side card-side__back">${this.value}</div>
     </div>
   </div>`;
