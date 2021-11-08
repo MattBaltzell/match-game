@@ -112,10 +112,15 @@ button {
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       border-radius: 12px;
+      border: 2px solid #fff;
     }
 
     &__front {
       background-color: #ff6b6b;
+      background-image: url(../img/card-texture.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
       color: #ffcece;
       font-size: 22px;
       font-weight: 100;
@@ -124,7 +129,8 @@ button {
 
     &__back {
       padding-top: 14px;
-      background-color: #eee;
+      background-color: #f0e9ff;
+
       transform: rotateY(180deg);
       font-size: 60px;
       color: #5f27cd;
