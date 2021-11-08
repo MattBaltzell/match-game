@@ -58,15 +58,13 @@ let score = 0;
 // GAME LOGIC
 const checkMatch = () => {
   let selectedCards = domCards.filter((el) => {
-    return (
-      el.firstElementChild.classList.contains("flip") && el.dataset.matched == 0
-    );
+    return el.classList.contains("flip") && el.dataset.matched == 0;
   });
   if (selectedCards[0].dataset.value !== selectedCards[1].dataset.value) {
     console.log("No MATCH!!!!");
     setTimeout(() => {
       unflipUnmatched();
-    }, 1000);
+    }, 600);
   } else if (
     selectedCards[0].dataset.value === selectedCards[1].dataset.value
   ) {
@@ -109,39 +107,28 @@ const dealCards = () => {
 };
 
 const cardFlipHandler = (e) => {
-  if (e.target.parentElement.classList.contains("flip")) {
+  if (e.target.parentElement.parentElement.classList.contains("flip")) {
     null;
   } else {
-    e.target.parentElement.classList.add("flip");
-    console.log(e.target.parentElement.parentElement.id.slice(5));
+    e.target.parentElement.parentElement.classList.add("flip");
     selections += 1;
-    if (selections === 2) {
-      checkMatch();
-    }
+    selections === 2 ? checkMatch() : null;
   }
 };
 
 const unflipUnmatched = () => {
   domCards.forEach((el) => {
-    if (el.dataset.matched == 0) {
-      el.firstElementChild.classList.remove("flip");
-    }
+    el.dataset.matched == 0 ? el.classList.remove("flip") : null;
   });
 };
 
 const unflipAll = () => {
-  if (!domCards) {
-    null;
-  } else {
-    domCards.forEach((el) => {
-      el.firstElementChild.classList.remove("flip");
-    });
-  }
+  !domCards ? null : domCards.forEach((el) => el.classList.remove("flip"));
 };
 
 const addFlipListeners = () => {
   domCards.forEach((el) => {
-    el.firstElementChild.addEventListener("click", cardFlipHandler);
+    el.addEventListener("click", cardFlipHandler);
   });
 };
 
@@ -151,9 +138,7 @@ btnPlayAgain.addEventListener("click", (e) => {
 });
 
 const checkWin = () => {
-  const flipped = domCards.filter((el) => {
-    return el.firstElementChild.classList.contains("flip");
-  });
+  const flipped = domCards.filter((el) => el.classList.contains("flip"));
   if (flipped.length === domCards.length) {
     btnPlayAgain.classList.remove("hidden");
     heading1.textContent = "YOU WIN!";
