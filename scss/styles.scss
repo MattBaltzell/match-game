@@ -40,6 +40,10 @@ button {
   color: #fff;
   font-size: 24px;
   background-color: #1dd1a1;
+
+  @media screen and (min-width: 400px) {
+    width: 340px;
+  }
 }
 
 .hidden {
@@ -86,7 +90,8 @@ button {
   cursor: pointer;
 
   @media screen and (min-width: 400px) {
-    height: 120px;
+    width: 160px;
+    height: 160px;
   }
 
   &-inner {
@@ -130,13 +135,13 @@ button {
     &__back {
       padding-top: 10px;
       background-color: #f0e9ff;
-
       transform: rotateY(180deg);
       font-size: 50px;
       color: #5f27cd;
 
       @media screen and (min-width: 400px) {
-        padding-top: 26px;
+        padding-top: 32px;
+        font-size: 80px;
       }
     }
   }

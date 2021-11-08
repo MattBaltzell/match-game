@@ -35,6 +35,9 @@ button {
   color: #fff;
   font-size: 24px;
   background-color: #1dd1a1; }
+  @media screen and (min-width: 400px) {
+    button {
+      width: 340px; } }
 
 .hidden {
   display: none; }
@@ -67,7 +70,8 @@ button {
   cursor: pointer; }
   @media screen and (min-width: 400px) {
     .card {
-      height: 120px; } }
+      width: 160px;
+      height: 160px; } }
   .card-inner {
     position: relative;
     width: 100%;
@@ -103,7 +107,8 @@ button {
     color: #5f27cd; }
     @media screen and (min-width: 400px) {
       .card-side__back {
-        padding-top: 26px; } }
+        padding-top: 32px;
+        font-size: 80px; } }
 
 .personal-best {
   margin-top: 40px; }
