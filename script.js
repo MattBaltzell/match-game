@@ -4,6 +4,7 @@ const gridDOM = document.querySelector("#grid");
 const heading1 = document.querySelector(".heading-1");
 const btnPlayAgain = document.getElementById("btn");
 const personalBest = document.querySelector(".personal-best");
+const scoreDisplay = document.querySelector(".score");
 
 setTimeout(() => {
   grid.innerHTML = "";
@@ -74,6 +75,7 @@ const checkMatch = () => {
     console.log("No MATCH!!!!");
     setTimeout(() => {
       score += 1;
+      displayScore();
       unflipUnmatched();
     }, 600);
   } else if (
@@ -90,6 +92,10 @@ const checkMatch = () => {
 };
 
 // FUNCTIONS
+const displayScore = () => (scoreDisplay.textContent = `Mistakes: ${score}`);
+const displayPersonalBest = () =>
+  (personalBest.textContent = `Personal Best: ${highScore} Mistakes`);
+
 const shuffleDeck = (arr) => {
   let currentIndex = arr.length,
     randomIndex;
@@ -159,6 +165,7 @@ const checkWin = () => {
       highScore = score;
     }
     localStorage.setItem("highScore", highScore);
+    displayPersonalBest();
     score = 0;
   }
 };
@@ -167,7 +174,8 @@ const init = () => {
   highScore
     ? personalBest.classList.remove("hidden")
     : personalBest.classList.add("hidden");
-  personalBest.textContent = `Personal Best: ${highScore} Mistakes`;
+  displayScore();
+  displayPersonalBest();
   unflipAll();
   setTimeout(() => {
     heading1.textContent = "Match the Cards!";
