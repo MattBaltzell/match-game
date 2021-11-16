@@ -23,41 +23,13 @@ class Card {
   }
 }
 
-const card1 = new Card("1", 1);
-const card2 = new Card("2", 2);
-const card3 = new Card("3", 3);
-const card4 = new Card("4", 4);
-const card5 = new Card("5", 5);
-const card6 = new Card("6", 6);
-const card7 = new Card("7", 7);
-const card8 = new Card("8", 8);
-const card9 = new Card("9", 1);
-const card10 = new Card("10", 2);
-const card11 = new Card("11", 3);
-const card12 = new Card("12", 4);
-const card13 = new Card("13", 5);
-const card14 = new Card("14", 6);
-const card15 = new Card("15", 7);
-const card16 = new Card("16", 8);
+const cardGenerator = (num) => {
+  for (let i = 1; i <= num; i++) {
+    cardDeck.push(new Card(`${i}`, i <= num / 2 ? i : i - num / 2));
+  }
+};
 
-const cardDeck = [
-  card1,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-];
+cardGenerator(16);
 
 let domCards;
 
