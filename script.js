@@ -23,6 +23,8 @@ class Card {
   }
 }
 
+const cardDeck = [];
+
 const cardGenerator = (num) => {
   for (let i = 1; i <= num; i++) {
     cardDeck.push(new Card(`${i}`, i <= num / 2 ? i : i - num / 2));
