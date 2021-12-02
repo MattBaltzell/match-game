@@ -1,164 +1,179 @@
 "use strict";
 
-const gridDOM = document.querySelector("#grid");
+// DOM SELECTORS
+const gridDOM = document.querySelector(".grid");
 const heading1 = document.querySelector(".heading-1");
 const btnPlayAgain = document.getElementById("btn");
 const personalBest = document.querySelector(".personal-best");
 const scoreDisplay = document.querySelector(".score");
 
-setTimeout(() => {
-  grid.innerHTML = "";
-}, 750);
+// GAMEPLAY VARIABLES & CARD CLASS
+const cardDeck = [];
+let domCards;
+let selections = 0;
+let score = 0;
+let highScore = localStorage.getItem("highScore") || 0;
 
 class Card {
   constructor(id, value) {
     this.id = id;
     this.value = value;
-    this.html = `<div class="card" id="card-${this.id}" data-value="${this.value}" data-matched="0">
-    <div class="card-inner">
-      <div class="card-side card-side__front"></div>
-      <div class="card-side card-side__back">${this.value}</div>
-    </div>
-  </div>`;
+  }
+
+  static htmlFn(id, value) {
+    return `<div class="card" id="card-${id}" data-value="${value}" data-matched="0">
+              <div class="card-inner">
+                <div class="card-side card-side__front"></div>
+                <div class="card-side card-side__back">${value}</div>
+              </div>
+            </div>`;
   }
 }
 
-const cardDeck = [];
-
-const cardGenerator = (num) => {
-  for (let i = 1; i <= num; i++) {
-    cardDeck.push(new Card(`${i}`, i <= num / 2 ? i : i - num / 2));
-  }
-};
-
-cardGenerator(16);
-
-let domCards;
-
-// GAMEPLAY VARIABLES
-let selections = 0;
-let score = 0;
-let highScore = localStorage.getItem("highScore") || 0;
+// Using this variable to prevent clicking too quickly and breaking the game
+let checking = false;
 
 // GAME LOGIC
-const checkMatch = () => {
-  let selectedCards = domCards.filter((el) => {
+setTimeout(() => {
+  grid.innerHTML = "";
+}, 750);
+
+const checkMatch = function () {
+  const selectedCards = domCards.filter((el) => {
     return el.classList.contains("flip") && el.dataset.matched == 0;
   });
   if (selectedCards[0].dataset.value !== selectedCards[1].dataset.value) {
-    console.log("No MATCH!!!!");
-    setTimeout(() => {
+    setTimeout(function () {
       score += 1;
       displayScore();
       unflipUnmatched();
+      checking = false;
     }, 600);
   } else if (
     selectedCards[0].dataset.value === selectedCards[1].dataset.value
   ) {
-    console.log("MATCH!!!!");
     selectedCards.forEach((el) => {
       el.dataset.matched = 1;
     });
     checkWin();
+    checking = false;
   }
-
   selections = 0;
 };
 
 // FUNCTIONS
-const displayScore = () => (scoreDisplay.textContent = `Mistakes: ${score}`);
-const displayPersonalBest = () =>
-  (personalBest.textContent = `Personal Best: ${highScore} Mistakes`);
-
-const shuffleDeck = (arr) => {
-  let currentIndex = arr.length,
-    randomIndex;
-
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [arr[currentIndex], arr[randomIndex]] = [
-      arr[randomIndex],
-      arr[currentIndex],
-    ];
-  }
-
-  return arr;
-};
-
-const dealCards = () => {
-  gridDOM.innerHTML = "";
-  cardDeck.forEach((el) => {
-    gridDOM.insertAdjacentHTML("afterbegin", el.html);
-  });
-};
-
-const cardFlipHandler = (e) => {
-  if (e.target.parentElement.parentElement.classList.contains("flip")) {
-    null;
-  } else {
-    e.target.parentElement.parentElement.classList.add("flip");
-    setTimeout(() => {
-      selections += 1;
-      selections === 2 ? checkMatch() : null;
-    }, 0);
-  }
-};
-
-const unflipUnmatched = () => {
-  domCards.forEach((el) => {
-    el.dataset.matched == 0 ? el.classList.remove("flip") : null;
-  });
-};
-
-const unflipAll = () => {
-  !domCards ? null : domCards.forEach((el) => el.classList.remove("flip"));
-};
-
-const addFlipListeners = () => {
-  domCards.forEach((el) => {
-    el.addEventListener("click", cardFlipHandler);
-  });
-};
-
-btnPlayAgain.addEventListener("click", (e) => {
-  e.preventDefault();
-  init();
-});
-
-const checkWin = () => {
-  const flipped = domCards.filter((el) => el.classList.contains("flip"));
-  if (flipped.length === domCards.length) {
-    btnPlayAgain.classList.remove("hidden");
-    heading1.textContent = "YOU WIN!";
-    if (!highScore || score < highScore) {
-      highScore = score;
-    }
-    localStorage.setItem("highScore", highScore);
-    displayPersonalBest();
-    score = 0;
-  }
-};
-
-const init = () => {
+const init = function () {
   highScore
     ? personalBest.classList.remove("hidden")
     : personalBest.classList.add("hidden");
   displayScore();
   displayPersonalBest();
   unflipAll();
-  setTimeout(() => {
+  setTimeout(function () {
     heading1.textContent = "Match the Cards!";
     btnPlayAgain.classList.add("hidden");
     shuffleDeck(cardDeck);
     dealCards();
-    domCards = [...gridDOM.childNodes];
+    domCards = Array.from(gridDOM.querySelectorAll(".card"));
     addFlipListeners();
   }, 750);
 };
 
+const cardGenerator = function (num) {
+  for (let i = 1; i <= num; i++) {
+    cardDeck.push(new Card(`${i}`, i <= num / 2 ? i : i - num / 2));
+  }
+};
+
+const shuffleDeck = function (arr) {
+  let currentIndex = arr.length,
+    randomIndex;
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    // And swap it with the current element.
+    [arr[currentIndex], arr[randomIndex]] = [
+      arr[randomIndex],
+      arr[currentIndex],
+    ];
+  }
+  return arr;
+};
+
+const dealCards = function () {
+  gridDOM.innerHTML = "";
+  cardDeck.forEach((el) => {
+    gridDOM.insertAdjacentHTML("afterbegin", Card.htmlFn(el.id, el.value));
+  });
+};
+
+const cardFlipHandler = function (e) {
+  if (checking) return;
+  e.preventDefault();
+  checking = true;
+  if (!e.target.classList.contains("card-side")) return;
+  if (e.target.closest(".card-inner").classList.contains("flip")) return;
+
+  e.target.closest(".card").classList.add("flip");
+
+  setTimeout(function () {
+    selections += 1;
+    selections === 2 ? checkMatch() : (checking = false);
+  }, 300);
+};
+
+const unflipUnmatched = function () {
+  domCards.forEach(
+    (el) => el.dataset.matched == 0 && el.classList.remove("flip")
+  );
+};
+
+const unflipAll = function () {
+  !domCards || domCards.forEach((el) => el.classList.remove("flip"));
+};
+
+const updateScore = function () {
+  if (!highScore || score < highScore) {
+    highScore = score;
+  }
+  localStorage.setItem("highScore", highScore);
+};
+
+const displayScore = function () {
+  scoreDisplay.textContent = `Mistakes: ${score}`;
+};
+
+const displayPersonalBest = function () {
+  personalBest.textContent = `Personal Best: ${highScore} Mistakes`;
+};
+
+const win = function () {
+  btnPlayAgain.classList.remove("hidden");
+  heading1.textContent = "YOU WIN!";
+  updateScore();
+  displayPersonalBest();
+  score = 0;
+};
+
+const checkWin = function () {
+  const flipped = domCards.filter((el) => el.classList.contains("flip"));
+  if (flipped.length === domCards.length) {
+    win();
+  }
+};
+
+// EVENT LISTENERS
+const addFlipListeners = function () {
+  gridDOM.addEventListener("click", cardFlipHandler);
+};
+
+btnPlayAgain.addEventListener("click", function (e) {
+  e.preventDefault();
+  init();
+});
+
+// START GAME
+cardGenerator(16);
 init();
