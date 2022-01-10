@@ -110,11 +110,12 @@ const dealCards = function () {
 };
 
 const cardFlipHandler = function (e) {
-  if (checking) return;
   e.preventDefault();
-  checking = true;
+  if (checking) return;
   if (!e.target.classList.contains("card-side")) return;
-  if (e.target.closest(".card-inner").classList.contains("flip")) return;
+  if (e.target.classList.contains("card-side__back")) return;
+
+  checking = true;
 
   e.target.closest(".card").classList.add("flip");
 
